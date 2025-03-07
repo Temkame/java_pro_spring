@@ -14,4 +14,28 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <!-- spring-context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.2.3</version>
+        </dependency>
+
+        <!-- postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.5</version>
+        </dependency>
+
+        <!-- hickaricp -->
+        <dependency>
+            <groupId>dev.zio</groupId>
+            <artifactId>zio-sql-jdbc-hickaricp_2.13</artifactId>
+            <version>0.1.2</version>
+        </dependency>
+
+    </dependencies>
+
 </project>
