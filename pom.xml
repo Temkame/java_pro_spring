@@ -43,10 +43,11 @@
             <version>0.1.2</version>
         </dependency>
 
+        <!-- flywaydb -->
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>10.20.1</version>
+            <version>11.4.0</version>
         </dependency>
 
     </dependencies>
