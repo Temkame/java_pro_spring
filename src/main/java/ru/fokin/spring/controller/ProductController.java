@@ -21,13 +21,13 @@ public class ProductController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Product>> getProductsByUserId(@PathVariable Long userId) {
+    public ResponseEntity<List<Product>> getProductsByUserId(@PathVariable("userId") Long userId) {
         List<Product> products = productService.getProductsByUserId(userId);
         return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long productId) {
+    public ResponseEntity<Product> getProductById(@PathVariable("productId") Long productId) {
         Product product = productService.getProductById(productId);
         return ResponseEntity.ok(product);
     }
