@@ -2,22 +2,18 @@ package ru.fokin.spring.model;
 
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
-
 @Entity
 @Table(name = "products")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "account_number")
+    @Column(name = "account_number", unique = true)
     private String accountNumber;
 
-    @Column(name = "balance")
-    private BigDecimal balance;
+    private Double balance;
 
     @Column(name = "product_type")
     private String productType;
@@ -26,10 +22,10 @@ public class Product {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Product() {
-    }
+    // Constructors, getters, setters
+    public Product() {}
 
-    public Product(String accountNumber, BigDecimal balance, String productType, User user) {
+    public Product(String accountNumber, Double balance, String productType, User user) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.productType = productType;
@@ -52,11 +48,11 @@ public class Product {
         this.accountNumber = accountNumber;
     }
 
-    public BigDecimal getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(BigDecimal balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
@@ -83,7 +79,7 @@ public class Product {
                 ", accountNumber='" + accountNumber + '\'' +
                 ", balance=" + balance +
                 ", productType='" + productType + '\'' +
-                ", user=" + user +
+                ", userId=" + (user != null ? user.getId() : null) +
                 '}';
     }
 }
