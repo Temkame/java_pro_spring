@@ -22,8 +22,8 @@ public class ApplicationRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User user1 = userService.createUser("user1");
-        User user2 = userService.createUser("user2");
+        User user1 = userService.createUser("Сергей");
+        User user2 = userService.createUser("Екатерина");
 
         productService.createProduct("ACC123456", 1000.0, "счет", user1.getId());
         productService.createProduct("CARD654321", 500.0, "карта", user1.getId());
