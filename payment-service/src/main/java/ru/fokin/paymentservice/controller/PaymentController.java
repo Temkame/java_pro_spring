@@ -21,14 +21,7 @@ public class PaymentController {
 
     @PostMapping("/process")
     public ResponseEntity<PaymentResponse> processPayment(@RequestBody PaymentRequest request) {
-        try {
-            PaymentResponse response = paymentService.processPayment(request);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            PaymentResponse response = new PaymentResponse();
-            response.setStatus("ERROR");
-            response.setMessage(e.getMessage());
-            return ResponseEntity.badRequest().body(response);
-        }
+        PaymentResponse response = paymentService.processPayment(request);
+        return ResponseEntity.ok(response);
     }
 }

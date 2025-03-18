@@ -1,7 +1,5 @@
 package ru.fokin.paymentservice.service;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.fokin.paymentservice.dto.PaymentRequest;
@@ -11,25 +9,19 @@ import ru.fokin.paymentservice.dto.ProductResponse;
 @Service
 public class PaymentService {
 
-    @Value("${product.service.url}")
-    private static String PRODUCT_SERVICE_URL;
-
     private final RestTemplate restTemplate;
+
     public PaymentService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     public PaymentResponse processPayment(PaymentRequest request) {
         try {
+            ProductResponse product = restTemplate.getForObject("/api/products/" + request.getProductId(), ProductResponse.class);
 
-            ResponseEntity<ProductResponse> productResponse = restTemplate.getForEntity(
-                    PRODUCT_SERVICE_URL + "/" + request.getProductId(), ProductResponse.class);
-
-            if (!productResponse.getStatusCode().is2xxSuccessful() || productResponse.getBody() == null) {
+            if (product == null) {
                 throw new RuntimeException("Product not found");
             }
-
-            ProductResponse product = productResponse.getBody();
 
             if (product.getBalance() < request.getAmount()) {
                 throw new RuntimeException("Insufficient funds");
